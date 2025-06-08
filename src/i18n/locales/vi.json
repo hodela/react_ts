@@ -1,0 +1,226 @@
+{
+    "common": {
+        "loading": "Đang tải...",
+        "error": "Lỗi",
+        "success": "Thành công",
+        "cancel": "Hủy",
+        "save": "Lưu",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "back": "Quay lại",
+        "next": "Tiếp theo",
+        "previous": "Trước đó",
+        "submit": "Gửi",
+        "close": "Đóng",
+        "search": "Tìm kiếm",
+        "filter": "Lọc",
+        "language": "Ngôn ngữ",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "name": "Tên"
+    },
+    "welcome": {
+        "title": "Chào mừng đến với React + Vite + TypeScript",
+        "subtitle": "Được xây dựng với shadcn/ui & Tailwind CSS",
+        "features": {
+            "react": {
+                "title": "React 18",
+                "description": "React hiện đại với hooks và tính năng đồng thời"
+            },
+            "typescript": {
+                "title": "TypeScript",
+                "description": "Phát triển an toàn kiểu với IntelliSense xuất sắc"
+            },
+            "shadcn": {
+                "title": "shadcn/ui",
+                "description": "Các thành phần đẹp, dễ tiếp cận được xây dựng với Radix UI"
+            }
+        },
+        "buttons": {
+            "getStarted": "Bắt đầu",
+            "learnMore": "Tìm hiểu thêm"
+        }
+    },
+    "navigation": {
+        "home": "Trang chủ",
+        "about": "Giới thiệu",
+        "contact": "Liên hệ",
+        "login": "Đăng nhập",
+        "register": "Đăng ký",
+        "logout": "Đăng xuất",
+        "profile": "Hồ sơ",
+        "demoAuth": "Demo Auth",
+        "notFound": "Trang 404"
+    },
+    "auth": {
+        "login": {
+            "title": "Đăng nhập",
+            "subtitle": "Nhập thông tin để truy cập tài khoản",
+            "forgotPassword": "Quên mật khẩu?",
+            "noAccount": "Chưa có tài khoản?",
+            "signUp": "Đăng ký",
+            "signInButton": "Đăng nhập",
+            "signingIn": "Đang đăng nhập...",
+            "placeholders": {
+                "email": "name@example.com",
+                "password": "Nhập mật khẩu"
+            },
+            "errors": {
+                "loginFeatureInDevelopment": "Tính năng đăng nhập đang được phát triển"
+            },
+            "seo": {
+                "title": "Đăng nhập",
+                "description": "Đăng nhập vào tài khoản của bạn để truy cập tất cả tính năng và nội dung cá nhân hóa",
+                "keywords": "đăng nhập, xác thực, truy cập tài khoản, đăng nhập hệ thống"
+            }
+        },
+        "register": {
+            "title": "Tạo tài khoản",
+            "subtitle": "Nhập thông tin để tạo tài khoản mới",
+            "haveAccount": "Đã có tài khoản?",
+            "signIn": "Đăng nhập",
+            "signUpButton": "Tạo tài khoản",
+            "signingUp": "Đang tạo tài khoản...",
+            "confirmPassword": "Xác nhận mật khẩu",
+            "agreeToTerms": "Tôi đồng ý với",
+            "termsOfService": "điều khoản sử dụng",
+            "placeholders": {
+                "name": "Tên đầy đủ của bạn",
+                "confirmPassword": "Xác nhận mật khẩu của bạn"
+            },
+            "errors": {
+                "registerFeatureInDevelopment": "Tính năng đăng ký đang được phát triển",
+                "termsRequired": "Vui lòng đồng ý với điều khoản sử dụng"
+            },
+            "seo": {
+                "title": "Tạo tài khoản",
+                "description": "Tạo tài khoản mới để bắt đầu sử dụng nền tảng và mở khóa tất cả tính năng",
+                "keywords": "đăng ký, tạo tài khoản, tham gia, người dùng mới"
+            }
+        },
+        "forgotPassword": {
+            "title": "Quên mật khẩu",
+            "subtitle": "Nhập email của bạn để đặt lại mật khẩu",
+            "sendReset": "Gửi liên kết đặt lại",
+            "backToLogin": "Quay lại đăng nhập",
+            "sending": "Đang gửi...",
+            "success": "Email đã được gửi thành công",
+            "checkEmail": "Kiểm tra hộp thư và làm theo hướng dẫn",
+            "placeholders": {
+                "email": "Nhập địa chỉ email của bạn"
+            },
+            "errors": {
+                "forgotPasswordFeatureInDevelopment": "Tính năng quên mật khẩu đang được phát triển"
+            },
+            "seo": {
+                "title": "Quên mật khẩu",
+                "description": "Đặt lại mật khẩu đã quên bằng cách nhập địa chỉ email để nhận hướng dẫn đặt lại",
+                "keywords": "quên mật khẩu, đặt lại mật khẩu, khôi phục mật khẩu, khôi phục tài khoản"
+            }
+        },
+        "resetPassword": {
+            "title": "Đặt lại mật khẩu",
+            "subtitle": "Nhập mật khẩu mới của bạn",
+            "newPassword": "Mật khẩu mới",
+            "confirmNewPassword": "Xác nhận mật khẩu mới",
+            "resetButton": "Đặt lại mật khẩu",
+            "resetting": "Đang đặt lại...",
+            "success": "Mật khẩu đã được đặt lại thành công",
+            "backToLogin": "Quay lại đăng nhập",
+            "invalidTokenMessage": "Liên kết khôi phục mật khẩu không tồn tại hoặc đã hết hạn",
+            "placeholders": {
+                "newPassword": "Nhập mật khẩu mới",
+                "confirmNewPassword": "Xác nhận mật khẩu mới"
+            },
+            "errors": {
+                "resetPasswordFeatureInDevelopment": "Tính năng đặt lại mật khẩu đang được phát triển",
+                "invalidToken": "Liên kết không hợp lệ",
+                "passwordMismatch": "Mật khẩu không khớp"
+            },
+            "seo": {
+                "title": "Đặt lại mật khẩu",
+                "description": "Đặt mật khẩu mới cho tài khoản của bạn bằng liên kết đặt lại an toàn được gửi đến email",
+                "keywords": "đặt lại mật khẩu, mật khẩu mới, thay đổi mật khẩu, bảo mật tài khoán"
+            }
+        },
+        "verifyEmail": {
+            "title": "Xác thực Email",
+            "subtitle": "Chúng tôi đang xác thực địa chỉ email của bạn",
+            "verifying": "Đang xác thực...",
+            "success": "Email đã được xác thực thành công!",
+            "failed": "Xác thực email thất bại",
+            "expired": "Liên kết xác thực đã hết hạn",
+            "backToLogin": "Quay lại đăng nhập",
+            "resendVerification": "Gửi lại xác thực",
+            "waitingMessage": "Nếu không tự động chuyển trang, vui lòng",
+            "seo": {
+                "title": "Xác thực Email",
+                "description": "Xác thực địa chỉ email của bạn để kích hoạt tài khoản và truy cập tất cả tính năng",
+                "keywords": "xác thực email, kích hoạt tài khoản, xác minh email"
+            }
+        },
+        "verifyEmailSuccess": {
+            "title": "Email đã được xác thực!",
+            "subtitle": "Email của bạn đã được xác thực thành công",
+            "message": "Chào mừng! Tài khoản của bạn hiện đã hoạt động và bạn có thể bắt đầu sử dụng tất cả tính năng.",
+            "continueToLogin": "Tiếp tục đăng nhập",
+            "seo": {
+                "title": "Email đã được xác thực thành công",
+                "description": "Email của bạn đã được xác thực thành công. Chào mừng đến với nền tảng của chúng tôi!",
+                "keywords": "email đã xác thực, tài khoản đã kích hoạt, xác thực thành công"
+            }
+        },
+        "verifyEmailFailed": {
+            "title": "Xác thực thất bại",
+            "subtitle": "Chúng tôi không thể xác thực email của bạn",
+            "message": "Liên kết xác thực không hợp lệ hoặc đã được sử dụng. Vui lòng yêu cầu email xác thực mới.",
+            "requestNewLink": "Yêu cầu liên kết mới",
+            "backToLogin": "Quay lại đăng nhập",
+            "seo": {
+                "title": "Xác thực Email thất bại",
+                "description": "Xác thực email thất bại. Yêu cầu liên kết xác thực mới để kích hoạt tài khoản",
+                "keywords": "xác thực thất bại, lỗi xác thực email, gửi lại xác thực"
+            }
+        },
+        "verifyEmailExpired": {
+            "title": "Liên kết đã hết hạn",
+            "subtitle": "Liên kết xác thực của bạn đã hết hạn",
+            "message": "Vì lý do bảo mật, liên kết xác thực sẽ hết hạn sau 24 giờ. Vui lòng yêu cầu email xác thực mới.",
+            "requestNewLink": "Yêu cầu liên kết mới",
+            "backToLogin": "Quay lại đăng nhập",
+            "seo": {
+                "title": "Liên kết xác thực đã hết hạn",
+                "description": "Liên kết xác thực email của bạn đã hết hạn. Yêu cầu liên kết mới để xác thực tài khoản",
+                "keywords": "xác thực hết hạn, liên kết hết hạn, xác thực email, gửi lại xác thực"
+            }
+        }
+    },
+    "home": {
+        "title": "Chào mừng đến với MyApp",
+        "subtitle": "Ứng dụng React + TypeScript + Vite với Router DOM, TanStack Query và Axios",
+        "seo": {
+            "title": "Trang chủ",
+            "description": "Chào mừng đến với ứng dụng React hiện đại được xây dựng với TypeScript, Vite, và các công nghệ web mới nhất",
+            "keywords": "react, typescript, vite, trang chủ, ứng dụng web"
+        }
+    },
+    "seo": {
+        "defaultTitle": "MyApp - Ứng dụng React hiện đại",
+        "titleSeparator": " | "
+    },
+    "notFoundPage": {
+        "title": "Không tìm thấy trang",
+        "heading": "404",
+        "subtitle": "Không tìm thấy trang",
+        "message": "Trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển.",
+        "backToHome": "Về trang chủ",
+        "seo": {
+            "title": "Không tìm thấy trang",
+            "description": "Trang bạn đang tìm kiếm không tồn tại. Quay lại trang chủ để tiếp tục duyệt web.",
+            "keywords": "404, không tìm thấy trang, lỗi trang, trang không tồn tại"
+        }
+    },
+    "footer": {
+        "copyright": "Tất cả quyền được bảo lưu"
+    }
+}

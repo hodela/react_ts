@@ -1,0 +1,226 @@
+{
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "submit": "Submit",
+        "close": "Close",
+        "search": "Search",
+        "filter": "Filter",
+        "language": "Language",
+        "email": "Email",
+        "password": "Password",
+        "name": "Name"
+    },
+    "welcome": {
+        "title": "Welcome to React + Vite + TypeScript",
+        "subtitle": "Built with shadcn/ui & Tailwind CSS",
+        "features": {
+            "react": {
+                "title": "React 18",
+                "description": "Modern React with hooks and concurrent features"
+            },
+            "typescript": {
+                "title": "TypeScript",
+                "description": "Type-safe development with excellent IntelliSense"
+            },
+            "shadcn": {
+                "title": "shadcn/ui",
+                "description": "Beautiful, accessible components built with Radix UI"
+            }
+        },
+        "buttons": {
+            "getStarted": "Get Started",
+            "learnMore": "Learn More"
+        }
+    },
+    "navigation": {
+        "home": "Home",
+        "about": "About",
+        "contact": "Contact",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout",
+        "profile": "Profile",
+        "demoAuth": "Demo Auth",
+        "notFound": "404 Not Found"
+    },
+    "auth": {
+        "login": {
+            "title": "Sign In",
+            "subtitle": "Enter your information to access your account",
+            "forgotPassword": "Forgot password?",
+            "noAccount": "Don't have an account?",
+            "signUp": "Sign up",
+            "signInButton": "Sign In",
+            "signingIn": "Signing in...",
+            "placeholders": {
+                "email": "name@example.com",
+                "password": "Enter password"
+            },
+            "errors": {
+                "loginFeatureInDevelopment": "Login feature is under development"
+            },
+            "seo": {
+                "title": "Sign In",
+                "description": "Sign in to your account to access all features and personalized content",
+                "keywords": "login, sign in, authentication, account access"
+            }
+        },
+        "register": {
+            "title": "Create Account",
+            "subtitle": "Enter your information to create an account",
+            "haveAccount": "Already have an account?",
+            "signIn": "Sign in",
+            "signUpButton": "Create Account",
+            "signingUp": "Creating account...",
+            "confirmPassword": "Confirm Password",
+            "agreeToTerms": "I agree to the",
+            "termsOfService": "terms of service",
+            "placeholders": {
+                "name": "Your full name",
+                "confirmPassword": "Confirm your password"
+            },
+            "errors": {
+                "registerFeatureInDevelopment": "Registration feature is under development",
+                "termsRequired": "Please agree to the terms of service"
+            },
+            "seo": {
+                "title": "Create Account",
+                "description": "Create a new account to get started with our platform and unlock all features",
+                "keywords": "register, sign up, create account, join, new user"
+            }
+        },
+        "forgotPassword": {
+            "title": "Forgot Password",
+            "subtitle": "Enter your email to reset your password",
+            "sendReset": "Send Reset Link",
+            "backToLogin": "Back to Login",
+            "sending": "Sending...",
+            "success": "Email sent successfully",
+            "checkEmail": "Check your inbox and follow the instructions",
+            "placeholders": {
+                "email": "Enter your email address"
+            },
+            "errors": {
+                "forgotPasswordFeatureInDevelopment": "Forgot password feature is under development"
+            },
+            "seo": {
+                "title": "Forgot Password",
+                "description": "Reset your forgotten password by entering your email address to receive reset instructions",
+                "keywords": "forgot password, reset password, password recovery, account recovery"
+            }
+        },
+        "resetPassword": {
+            "title": "Reset Password",
+            "subtitle": "Enter your new password",
+            "newPassword": "New Password",
+            "confirmNewPassword": "Confirm New Password",
+            "resetButton": "Reset Password",
+            "resetting": "Resetting...",
+            "success": "Password has been reset successfully",
+            "backToLogin": "Back to Login",
+            "invalidTokenMessage": "The password reset link does not exist or has expired",
+            "placeholders": {
+                "newPassword": "Enter new password",
+                "confirmNewPassword": "Confirm new password"
+            },
+            "errors": {
+                "resetPasswordFeatureInDevelopment": "Reset password feature is under development",
+                "invalidToken": "Invalid Link",
+                "passwordMismatch": "Passwords do not match"
+            },
+            "seo": {
+                "title": "Reset Password",
+                "description": "Set a new password for your account using the secure reset link sent to your email",
+                "keywords": "reset password, new password, password change, account security"
+            }
+        },
+        "verifyEmail": {
+            "title": "Verify Email",
+            "subtitle": "We're verifying your email address",
+            "verifying": "Verifying...",
+            "success": "Email verified successfully!",
+            "failed": "Email verification failed",
+            "expired": "Verification link has expired",
+            "backToLogin": "Back to Login",
+            "resendVerification": "Resend Verification",
+            "waitingMessage": "If the page doesn't redirect automatically, please",
+            "seo": {
+                "title": "Verify Email",
+                "description": "Verify your email address to activate your account and access all features",
+                "keywords": "email verification, account activation, verify email"
+            }
+        },
+        "verifyEmailSuccess": {
+            "title": "Email Verified!",
+            "subtitle": "Your email has been successfully verified",
+            "message": "Welcome! Your account is now active and you can start using all features.",
+            "continueToLogin": "Continue to Login",
+            "seo": {
+                "title": "Email Verified Successfully",
+                "description": "Your email has been successfully verified. Welcome to our platform!",
+                "keywords": "email verified, account activated, verification success"
+            }
+        },
+        "verifyEmailFailed": {
+            "title": "Verification Failed",
+            "subtitle": "We couldn't verify your email",
+            "message": "The verification link is invalid or has already been used. Please request a new verification email.",
+            "requestNewLink": "Request New Link",
+            "backToLogin": "Back to Login",
+            "seo": {
+                "title": "Email Verification Failed",
+                "description": "Email verification failed. Request a new verification link to activate your account",
+                "keywords": "verification failed, email verification error, resend verification"
+            }
+        },
+        "verifyEmailExpired": {
+            "title": "Link Expired",
+            "subtitle": "Your verification link has expired",
+            "message": "For security reasons, verification links expire after 24 hours. Please request a new verification email.",
+            "requestNewLink": "Request New Link",
+            "backToLogin": "Back to Login",
+            "seo": {
+                "title": "Verification Link Expired",
+                "description": "Your email verification link has expired. Request a new link to verify your account",
+                "keywords": "verification expired, expired link, email verification, resend verification"
+            }
+        }
+    },
+    "home": {
+        "title": "Welcome to MyApp",
+        "subtitle": "React + TypeScript + Vite application with Router DOM, TanStack Query and Axios",
+        "seo": {
+            "title": "Home",
+            "description": "Welcome to the modern React application built with TypeScript, Vite, and the latest web technologies",
+            "keywords": "react, typescript, vite, home, web application"
+        }
+    },
+    "seo": {
+        "defaultTitle": "MyApp - Modern React Application",
+        "titleSeparator": " | "
+    },
+    "notFoundPage": {
+        "title": "Page Not Found",
+        "heading": "404",
+        "subtitle": "Page Not Found",
+        "message": "The page you are looking for does not exist or has been moved.",
+        "backToHome": "Back to Home",
+        "seo": {
+            "title": "Page Not Found",
+            "description": "The page you are looking for does not exist. Return to the homepage to continue browsing.",
+            "keywords": "404, page not found, page error, missing page"
+        }
+    },
+    "footer": {
+        "copyright": "All rights reserved"
+    }
+}

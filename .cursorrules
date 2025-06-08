@@ -1,0 +1,138 @@
+# React + Vite + TypeScript Project Rules
+
+## Project Context
+
+This is a React application built with Vite and TypeScript. Follow modern React patterns and TypeScript best practices.
+
+## Code Style and Standards
+
+### TypeScript
+
+- Use TypeScript strict mode
+- Always define proper types for props, state, and function parameters
+- Avoid using `any` type unless absolutely necessary
+- Prefer interfaces over type aliases for object shapes
+- Use enums for constants with multiple related values
+
+### React Patterns
+
+- Use functional components with hooks
+- Prefer named exports for components
+- Keep components small and focused on a single responsibility
+- Use custom hooks for reusable logic
+- Implement proper error boundaries for error handling
+
+### File Structure
+
+- Components: `/src/components/ComponentName/ComponentName.tsx`
+- Hooks: `/src/hooks/useHookName.ts`
+- Types: `/src/types/specific.ts`
+- Utils: `/src/utils/utilName.ts`
+- Assets: `/src/assets/`
+- API Client: `/src/api/client.ts`
+- API Services: `/src/api/services/`
+- API Types: `/src/types/api.ts`
+- Router: `/src/router/index.tsx`
+- Layouts: `/src/layouts/`
+- Pages: `/src/pages/`
+- Providers: `/src/providers/`
+- Libraries: `/src/lib/`
+- Constants: `/src/constants/`
+
+### Naming Conventions
+
+- Components: PascalCase (e.g., `UserProfile.tsx`)
+- Hooks: camelCase with 'use' prefix (e.g., `useAuth.ts`)
+- Utilities: camelCase (e.g., `formatDate.ts`)
+- Types/Interfaces: PascalCase with 'I' prefix for interfaces (e.g., `IUser`)
+- Props interfaces: ComponentName + 'Props' (e.g., `UserProfileProps`)
+
+### Component Structure
+
+```tsx
+import { FC } from "react";
+
+interface ComponentNameProps {
+    // Define props here
+}
+
+export const ComponentName: FC<ComponentNameProps> = ({ prop1, prop2 }) => {
+    // Hooks at the top
+    // Logic in the middle
+    // Return JSX at the bottom
+
+    return <div>{/* Component content */}</div>;
+};
+```
+
+### State Management
+
+- Use React Context for global state when needed
+- Zustand for complex state management
+- Keep local state in components when possible
+- Use useReducer for complex local state logic
+
+### Performance
+
+- Implement React.memo for expensive components
+- Use useMemo and useCallback appropriately
+- Lazy load components with React.lazy and Suspense
+- Optimize re-renders by proper dependency arrays
+
+### Styling
+
+- Use Tailwind CSS for styling
+- Follow mobile-first responsive design
+- Use CSS variables for theme values
+- Keep styles scoped to components
+
+### Best Practices
+
+- Always handle loading and error states
+- Implement proper form validation
+- Use environment variables for configuration
+- Follow accessibility guidelines (WCAG)
+- Implement proper SEO with React Helmet
+- Use absolute imports with @ alias configured in tsconfig.json
+- Always split components into smaller files
+- Follow the type safety rules
+
+### Git Commit Messages
+
+- Use conventional commits format
+- feat: new feature
+- fix: bug fix
+- docs: documentation changes
+- style: formatting changes
+- refactor: code restructuring
+- test: test additions or modifications
+- chore: maintenance tasks
+
+### Dependencies
+
+- Keep dependencies fixed
+- Audit for security vulnerabilities regularly
+- Prefer well-maintained libraries
+- Document why each dependency is needed
+
+## Vite Specific
+
+- Use Vite's built-in features for optimization
+- Configure proper build settings for production
+- Use environment variables with VITE\_ prefix
+- Leverage Vite's HMR for development
+
+## Code Review Checklist
+
+- [ ] TypeScript types are properly defined
+- [ ] No console.logs in production code
+- [ ] Error handling is implemented
+- [ ] Component is accessible
+- [ ] Code follows project conventions
+- [ ] Follow the type safety rules
+- [ ] Follow the file structure rules
+- [ ] Follow the naming conventions
+- [ ] Follow the component structure rules
+- [ ] Follow the state management rules
+- [ ] Follow the performance rules
+- [ ] Follow the styling rules
