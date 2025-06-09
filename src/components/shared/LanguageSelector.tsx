@@ -12,6 +12,7 @@ import { useLanguage, type Language } from "@/hooks/useLanguage";
 interface LanguageSelectorProps {
     variant?: "default" | "ghost" | "outline";
     size?: "default" | "sm" | "lg" | "icon";
+    showLabel?: boolean;
 }
 
 const languages = [
@@ -19,7 +20,7 @@ const languages = [
     { code: "vi" as Language, name: "Tiếng Việt", flag: "🇻🇳" },
 ];
 
-export const LanguageSelector: FC<LanguageSelectorProps> = ({ variant = "ghost", size = "sm" }) => {
+export const LanguageSelector: FC<LanguageSelectorProps> = ({ variant = "ghost", size = "sm", showLabel = true }) => {
     const { currentLanguage, changeLanguage } = useLanguage();
 
     const currentLang = languages.find((lang) => lang.code === currentLanguage);
@@ -27,9 +28,9 @@ export const LanguageSelector: FC<LanguageSelectorProps> = ({ variant = "ghost",
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant={variant} size={size} className="gap-2">
+                <Button variant={variant} size={size} className="gap-2 w-full lg:w-auto">
                     {currentLang?.flag}
-                    <span className="hidden sm:inline">{currentLang?.name}</span>
+                    {showLabel && <span>{currentLang?.name}</span>}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

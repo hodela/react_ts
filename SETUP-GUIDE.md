@@ -4,76 +4,95 @@
 
 Dự án đã được cấu hình với:
 
+- ✅ **React 19** - Latest React version với modern features
 - ✅ **React Router DOM** - Client-side routing với lazy loading
-- ✅ **TanStack Query** - Server state management
-- ✅ **Axios** - HTTP client với interceptors
+- ✅ **TanStack Query** - Server state management với React Query DevTools
+- ✅ **Axios** - HTTP client với interceptors và token management
 - ✅ **TypeScript** - Type safety
-- ✅ **Tailwind CSS** - Styling
+- ✅ **Tailwind CSS** - Styling với custom components
 - ✅ **Font Inter** - Typography
 - ✅ **React i18next** - Đa ngôn ngữ (Tiếng Việt/English)
 - ✅ **SEO Optimization** - Meta tags, Open Graph, Schema.org
-- ✅ **Multilingual SEO** - Hreflang, locale-aware meta tags
+- ✅ **Theme Support** - Light/Dark/System mode với next-themes
+- ✅ **React Hook Form + Zod** - Form validation
+- ✅ **Radix UI** - Accessible UI components
+- ✅ **Sonner** - Toast notifications
+- ✅ **React Helmet Async** - Head management
 
 ## 📁 Cấu trúc thư mục
 
 ```
 src/
 ├── api/                    # API configuration
-│   ├── client.ts          # Axios instance với interceptors
+│   ├── client.ts          # Axios instance với interceptors và token management
 │   └── services/          # API services
 │       ├── auth.service.ts # Authentication services
 │       └── user.service.ts # User services
+├── assets/                # Static assets
 ├── components/            # Reusable components
-│   ├── ui/                # UI components
+│   ├── ui/                # Radix UI components (46 components)
 │   ├── shared/            # Shared components
-│   ├── home/              # Home components
-│   ├── auth/              # Auth components
-│   └── ...                # Other components
+│   │   ├── Header.tsx     # Main header với auth menu
+│   │   ├── Footer.tsx     # Footer component
+│   │   ├── SEO.tsx        # SEO component
+│   │   ├── ThemeToggle.tsx # Theme switcher
+│   │   └── LanguageSelector.tsx # Language selector
+│   ├── user/              # User-related components
+│   └── Welcome/           # Welcome page components
+├── constants/             # App constants
 ├── hooks/                 # Custom hooks
 │   ├── useAuth.ts        # Authentication hook
-│   └── useDebounce.ts     # Debounce hook
-│   └── useClickOutside.ts # Click outside hook
-│   └── useScroll.ts       # Scroll hook
-│   └── use-mobile.tsx     # Mobile hook
+│   ├── useLanguage.ts    # Language management hook
+│   ├── useDebounce.ts    # Debounce hook
+│   ├── useClickOutside.ts # Click outside hook
+│   ├── useScroll.ts      # Scroll hook
+│   └── use-mobile.tsx    # Mobile detection hook
+├── i18n/                 # Internationalization
+│   ├── index.ts          # i18next configuration
+│   └── locales/
+│       ├── vi.json       # Vietnamese translations (400 lines)
+│       └── en.json       # English translations (400 lines)
 ├── layouts/              # Layout components
 │   ├── RootLayout.tsx    # Main app layout
-│   └── AuthLayout.tsx    # Auth pages layout
+│   ├── AuthLayout.tsx    # Auth pages layout
+│   └── AccountLayout.tsx # Account pages layout
+├── lib/                  # Utility libraries
+│   ├── seo-utils.ts      # SEO utility functions
+│   ├── tokenManager.ts   # Token management utilities
+│   ├── imageUtils.ts     # Image processing utilities
+│   └── utils.ts          # General utilities
 ├── pages/                # Page components
 │   ├── HomePage.tsx      # Home page
-│   ├── NotFoundPage.tsx  # Not found page
-│   └── auth/
+│   ├── NotFoundPage.tsx  # 404 page
+│   ├── ComponentsDemo.tsx # UI components demo
+│   ├── AuthDemo.tsx      # Authentication demo
+│   ├── account/          # Account management pages
+│   │   ├── AccountInfoPage.tsx # Profile information
+│   │   ├── ChangePasswordPage.tsx # Change password
+│   │   └── SettingsPage.tsx # User settings
+│   └── auth/             # Authentication pages
 │       ├── LoginPage.tsx # Login page
-│       └── RegisterPage.tsx # Register page
-│       └── ForgotPasswordPage.tsx # Forgot password page
-│       └── ResetPasswordPage.tsx # Reset password page
-│       └── VerifyEmailPage.tsx # Verify email page
-│       └── VerifyEmailSuccessPage.tsx # Verify email success page
-│       └── VerifyEmailFailedPage.tsx # Verify email failed page
-│       └── VerifyEmailExpiredPage.tsx # Verify email expired page
+│       ├── RegisterPage.tsx # Registration
+│       ├── ForgotPasswordPage.tsx # Forgot password
+│       ├── ResetPasswordPage.tsx # Reset password
+│       ├── VerifyEmailPage.tsx # Email verification
+│       ├── VerifyEmailSuccessPage.tsx # Success page
+│       ├── VerifyEmailFailedPage.tsx # Failed page
+│       ├── VerifyEmailExpiredPage.tsx # Expired page
+│       └── ResendVerificationPage.tsx # Resend verification
 ├── providers/            # Context providers
-│   └── QueryProvider.tsx # TanStack Query provider
+│   ├── QueryProvider.tsx # TanStack Query provider
+│   ├── LanguageProvider.tsx # i18n provider
+│   ├── ThemeProvider.tsx # Theme provider
+│   └── SEOProvider.tsx   # SEO provider
 ├── router/               # Routing configuration
-│   └── index.tsx         # Router setup
+│   └── index.tsx         # Router setup với lazy loading
 ├── types/                # TypeScript types
-│   └── api.ts           # API related types
-├── App.tsx
-├── main.tsx
-├── styles.css
-├── .env.example
-├── .cursorignore
-├── .cursorrules
-├── .gitignore
-├── components.json
-├── eslint.config.js
-├── index.html
-├── package.json
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
-├── vite.config.ts
-├── .env.example
-├── postcss.config.js
-├── tailwind.config.js
+│   └── api.ts           # API related types (136 lines)
+├── App.tsx              # Main app component
+├── main.tsx             # Entry point
+├── styles.css           # Global styles
+└── vite-env.d.ts       # Vite type definitions
 ```
 
 ## 🔧 Cấu hình Environment Variables
@@ -85,16 +104,47 @@ src/
     ```
 
 2. Cập nhật các giá trị trong `.env` theo môi trường của bạn:
+
     ```env
-    VITE_API_BASE_URL=http://localhost:3000/api
+    # SEO Configuration
+    VITE_SITE_URL=http://localhost:5173
+
+    # Application Configuration
     VITE_APP_NAME=MyApp
-    # ... other variables
+    VITE_APP_VERSION=1.0.0
+
+    # Environment
+    VITE_NODE_ENV=development
+
+    # Feature Flags
+    VITE_ENABLE_DEVTOOLS=true
+    VITE_ENABLE_ANALYTICS=false
+
+    # Authentication
+    VITE_JWT_SECRET="your-secret-key"
+    VITE_TOKEN_EXPIRY=24h
+
+    # Storage
+    VITE_UPLOAD_MAX_SIZE=10485760
+    VITE_ALLOWED_FILE_TYPES=image/jpeg,image/png,image/gif,application/pdf
     ```
 
 ## 🏃‍♂️ Chạy ứng dụng
 
 ```bash
 npm run dev
+```
+
+### Scripts có sẵn
+
+```bash
+npm run dev          # Chạy development server
+npm run build        # Build production
+npm run lint         # Chạy ESLint
+npm run preview      # Preview production build
+npm run seo:generate # Tạo SEO files (robots.txt, sitemap.xml)
+npm run seo:check    # Kiểm tra SEO files
+npm run prebuild     # Tự động chạy trước khi build (tạo SEO files)
 ```
 
 ## 📖 Cách sử dụng
@@ -183,6 +233,61 @@ const MyComponent = () => {
 };
 ```
 
+### 5. Theme Management
+
+```typescript
+import { useTheme } from "next-themes";
+
+const ThemeComponent = () => {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div>
+      <button onClick={() => setTheme("light")}>Light</button>
+      <button onClick={() => setTheme("dark")}>Dark</button>
+      <button onClick={() => setTheme("system")}>System</button>
+    </div>
+  );
+};
+```
+
+### 6. Form Validation với React Hook Form + Zod
+
+```typescript
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useTranslation } from "react-i18next";
+
+const LoginForm = () => {
+  const {t} = useTranslation();
+  const loginSchema = z.object({
+    email: z.string().email(t("auth.login.validation.emailInvalid")),
+    password: z.string().min(1, t("auth.login.validation.passwordRequired")),
+  });
+
+  type LoginFormData = z.infer<typeof loginSchema>;
+
+  const form = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)}>
+      {/* Form fields */}
+    </form>
+  );
+};
+```
+
 ## 🔒 Authentication Flow
 
 ### Token Strategy
@@ -235,32 +340,188 @@ const MyComponent = () => {
 
 ## 🎨 Styling với Tailwind
 
-Tất cả components đã được style với Tailwind CSS và font Inter. Bạn có thể:
+Dự án sử dụng Tailwind CSS với:
 
-- Sử dụng classes có sẵn: `bg-blue-600`, `text-white`, etc.
-- Tạo custom components trong `src/components/`
-- Responsive design: `md:grid-cols-2`, `lg:grid-cols-3`
+- **46 UI Components**: Từ Radix UI với custom styling
+- **Typography**: Font Inter được cấu hình sẵn
+- **Theme Support**: Light/Dark/System mode
+- **Responsive Design**: Mobile-first approach
+- **Custom Classes**: Được định nghĩa trong `tailwind.config.js`
+
+### Các components UI có sẵn:
+
+- Alert, Avatar, Badge, Button, Card, Calendar
+- Checkbox, Collapsible, Command, Context Menu
+- Dialog, Dropdown Menu, Form, Input, Label
+- Navigation Menu, Popover, Progress, Radio Group
+- Select, Separator, Sheet, Slider, Switch
+- Table, Tabs, Textarea, Toast, Toggle
+- Tooltip, Typography và nhiều hơn nữa
+
+## 🌐 Đa ngôn ngữ (Internationalization - i18n)
+
+### Cấu hình i18n
+
+Dự án đã được cấu hình với **react-i18next** để hỗ trợ đa ngôn ngữ:
+
+- ✅ **Tiếng Việt (vi)** - Ngôn ngữ mặc định
+- ✅ **Tiếng Anh (en)** - Ngôn ngữ phụ
+- ✅ **Auto-detection** - Tự động phát hiện ngôn ngữ từ browser
+- ✅ **LocalStorage** - Lưu trữ lựa chọn ngôn ngữ
+- ✅ **SEO-friendly** - Hỗ trợ hreflang và meta tags đa ngôn ngữ
+- ✅ **Language Hook** - `useLanguage` hook để quản lý ngôn ngữ
+- ✅ **Language Selector** - Component chuyển đổi ngôn ngữ
+
+### Sử dụng Translation trong Components
+
+```typescript
+import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t, i18n } = useTranslation();
+
+  // Sử dụng translation
+  const title = t('auth.login.title'); // "Đăng nhập" hoặc "Sign In"
+
+  // Thay đổi ngôn ngữ
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
+  return (
+    <div>
+      <h1>{title}</h1>
+      <button onClick={() => changeLanguage('en')}>English</button>
+      <button onClick={() => changeLanguage('vi')}>Tiếng Việt</button>
+    </div>
+  );
+};
+```
+
+### SEO Đa ngôn ngữ
+
+Tất cả các trang đã được tích hợp SEO đa ngôn ngữ:
+
+```typescript
+import { generateAuthPageSEO } from '@/lib/seo-utils';
+
+const LoginPage = () => {
+  const { t } = useTranslation();
+  const seoData = generateAuthPageSEO('login', t);
+
+  return (
+    <>
+      <SEO
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        schema={seoData.schema}
+      />
+      {/* Page content */}
+    </>
+  );
+};
+```
 
 ## 🚀 Tính năng nâng cao
 
 - **Lazy Loading**: Tất cả pages được lazy load
 - **Error Boundaries**: Xử lý lỗi ở route level
 - **Loading States**: Loading spinners tự động
-- **Caching**: TanStack Query cache với stale time
-- **Retry Logic**: Auto retry cho failed requests
-- **Type Safety**: Full TypeScript support
+- **Caching**: TanStack Query cache với stale time (5 phút)
+- **Retry Logic**: Auto retry cho failed requests (3 lần)
+- **Type Safety**: Full TypeScript support với 136 API types
+- **Build Optimization**: Chunk splitting và tree shaking
+- **Toast Notifications**: Sonner với rich colors
+- **Form Validation**: Zod schema validation
+- **Theme Persistence**: LocalStorage theme management
+- **Mobile Responsive**: Dedicated mobile hooks và responsive design
+
+## 🔧 Build Optimization
+
+### Vite Configuration
+
+```typescript
+// vite.config.ts đã được tối ưu với:
+- Proxy cho API calls (/api và /uploads)
+- Alias paths (@, @/components, @/pages, etc.)
+- Manual chunks cho các thư viện lớn:
+  - react-vendor (React core)
+  - router (React Router)
+  - radix-ui (UI components)
+  - form-libs (Form & validation)
+  - data-libs (TanStack Query & Axios)
+  - i18n (Internationalization)
+  - utility-libs (Date & Charts)
+  - ui-libs (Other UI libraries)
+```
+
+### Performance Features
+
+- **Chunk size warning**: 1000 kB limit
+- **ESNext target**: Modern browser optimization
+- **Asset hashing**: Optimal caching
+- **Tree shaking**: Unused code elimination
 
 ## 🔗 API Specification
 
-Dưới đây là chi tiết các API endpoints cần thiết để hệ thống hoạt động hoàn chỉnh:
+API specification đã được thiết kế hoàn chỉnh cho:
 
-### Base Configuration
+- Authentication endpoints (login, register, refresh, etc.)
+- User management endpoints
+- Error handling với proper HTTP status codes
+- Validation error responses
+- JWT token configuration
 
-```
-Base URL: http://localhost:3000/api (hoặc theo VITE_API_BASE_URL)
-Content-Type: application/json
-Authorization: Bearer {access_token} (cho protected routes)
-```
+## 📱 Routes có sẵn
+
+### Public Routes
+
+- `/` - Home page
+- `/auth/login` - Login page
+- `/auth/register` - Register page
+- `/auth/forgot-password` - Forgot password
+- `/auth/reset-password` - Reset password
+- `/auth/verify-email` - Email verification
+- `/auth/verify-email-success` - Success page
+- `/auth/verify-email-failed` - Failed page
+- `/auth/verify-email-expired` - Expired page
+- `/auth/resend-verification` - Resend verification
+- `/components-demo` - UI components demo
+- `/auth-demo` - Authentication demo
+
+### Protected Routes (Account)
+
+- `/account` - Account info page
+- `/account/change-password` - Change password
+- `/account/settings` - User settings
+
+### Error Routes
+
+- `*` - 404 Not Found page
+
+## 📝 Next Steps
+
+1. ✅ Kết nối với backend API thực tế (API specs đã ready)
+2. ✅ Form validation (React Hook Form + Zod đã setup)
+3. ✅ Protected routes (đã có structure)
+4. ⏳ Thêm unit tests (Vitest + React Testing Library)
+5. ⏳ Setup CI/CD pipeline
+6. ⏳ Add error tracking (Sentry)
+7. ⏳ Implement push notifications
+8. ✅ Language switcher component (đã có)
+9. ⏳ Implement URL-based language routing (optional)
+10. ⏳ Add more languages (optional)
+
+## 🛠️ Development Tools
+
+- **React Query DevTools**: Enabled trong development mode
+- **TypeScript**: Strict mode với comprehensive types
+- **ESLint + Prettier**: Code formatting và linting
+- **Vite HMR**: Fast development với Hot Module Replacement
+- **Path Aliases**: Organized imports với @ aliases
+
+## API Specification
 
 ### 🔐 Authentication APIs
 
@@ -283,17 +544,6 @@ POST /auth/login
 
 ```json
 {
-    "user": {
-        "id": "uuid-string",
-        "email": "user@example.com",
-        "name": "John Doe",
-        "avatar": "https://example.com/avatar.jpg",
-        "theme": "light",
-        "language": "en",
-        "role": "user",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
-    },
     "accessToken": "jwt-access-token",
     "refreshToken": "jwt-refresh-token",
     "expiresIn": 14400,
@@ -301,62 +551,19 @@ POST /auth/login
 }
 ```
 
-**Error Responses:**
-
-```json
-// 401 - Invalid credentials
-{
-  "message": "Đăng nhập thất bại",
-  "code": "LOGIN_FAILED",
-  "details": {
-    "email": ["Email hoặc mật khẩu không đúng"]
-  }
-}
-
-// 422 - Validation error
-{
-  "message": "Dữ liệu không hợp lệ",
-  "code": "VALIDATION_ERROR",
-  "details": {
-    "email": ["Email không hợp lệ"],
-    "password": ["Mật khẩu không được để trống"]
-  }
-}
-```
-
-#### 2. Get Current User
-
-```http
-GET /auth/me
-Headers: Authorization: Bearer {access_token}
-```
-
-**Response (200):**
-
-```json
-{
-    "id": "uuid-string",
-    "email": "user@example.com",
-    "name": "John Doe",
-    "avatar": "https://example.com/avatar.jpg",
-    "theme": "light",
-    "language": "en",
-    "role": "user",
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-01T00:00:00Z"
-}
-```
-
 **Error Response (401):**
 
 ```json
 {
-    "message": "Không thể lấy thông tin user",
-    "code": "GET_USER_FAILED"
+    "message": "Đăng nhập thất bại",
+    "code": "LOGIN_FAILED",
+    "details": {
+        "email": ["Email hoặc mật khẩu không đúng"]
+    }
 }
 ```
 
-#### 3. Refresh Token
+#### 2. Refresh Token
 
 ```http
 POST /auth/refresh
@@ -374,8 +581,8 @@ POST /auth/refresh
 
 ```json
 {
-    "accessToken": "new-jwt-access-token",
-    "refreshToken": "new-jwt-refresh-token",
+    "accessToken": "jwt-access-token",
+    "refreshToken": "jwt-refresh-token",
     "expiresIn": 14400,
     "tokenType": "Bearer"
 }
@@ -385,19 +592,21 @@ POST /auth/refresh
 
 ```json
 {
-    "message": "Không thể làm mới token",
-    "code": "REFRESH_TOKEN_FAILED",
-    "details": {
-        "refreshToken": ["Refresh token không hợp lệ hoặc đã hết hạn"]
-    }
+    "message": "Refresh token không hợp lệ",
+    "code": "INVALID_REFRESH_TOKEN"
 }
 ```
 
-#### 4. Logout
+#### 3. Logout
 
 ```http
 POST /auth/logout
-Headers: Authorization: Bearer {access_token}
+```
+
+**Headers:**
+
+```
+Authorization: Bearer {access_token}
 ```
 
 **Request Body:**
@@ -416,7 +625,7 @@ Headers: Authorization: Bearer {access_token}
 }
 ```
 
-#### 5. Register
+#### 4. Register
 
 ```http
 POST /auth/register
@@ -466,7 +675,7 @@ POST /auth/register
 }
 ```
 
-#### 6. Forgot Password
+#### 5. Forgot Password
 
 ```http
 POST /auth/forgot-password
@@ -500,7 +709,7 @@ POST /auth/forgot-password
 }
 ```
 
-#### 7. Reset Password
+#### 6. Reset Password
 
 ```http
 POST /auth/reset-password
@@ -537,7 +746,7 @@ POST /auth/reset-password
 }
 ```
 
-#### 8. Verify Email
+#### 7. Verify Email
 
 ```http
 POST /auth/verify-email
@@ -573,10 +782,10 @@ POST /auth/verify-email
 
 ### 👥 User APIs
 
-#### 1. Get Profile
+#### 1. Get Current User
 
 ```http
-GET /users/profile
+GET /users/me
 Headers: Authorization: Bearer {access_token}
 ```
 
@@ -608,7 +817,7 @@ Headers: Authorization: Bearer {access_token}
 #### 2. Update Profile
 
 ```http
-PUT /users/profile
+PUT /users/me
 Headers: Authorization: Bearer {access_token}
 ```
 
@@ -1078,16 +1287,3 @@ Có thể mở rộng thành:
 /en/auth/login    # Tiếng Anh
 /auth/login       # Default (redirect based on browser)
 ```
-
-## 📝 Next Steps
-
-1. Kết nối với backend API thực tế
-2. Thêm form validation (React Hook Form + Zod)
-3. Implement protected routes
-4. Thêm unit tests (Vitest + React Testing Library)
-5. Setup CI/CD pipeline
-6. Add error tracking (Sentry)
-7. Implement push notifications
-8. Thêm language switcher component vào header
-9. Implement URL-based language routing (optional)
-10. Add more languages (optional)

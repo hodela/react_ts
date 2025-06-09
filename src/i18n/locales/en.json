@@ -19,12 +19,17 @@
         "password": "Password",
         "name": "Name"
     },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
     "welcome": {
         "title": "Welcome to React + Vite + TypeScript",
         "subtitle": "Built with shadcn/ui & Tailwind CSS",
         "features": {
             "react": {
-                "title": "React 18",
+                "title": "React 19",
                 "description": "Modern React with hooks and concurrent features"
             },
             "typescript": {
@@ -61,12 +66,18 @@
             "signUp": "Sign up",
             "signInButton": "Sign In",
             "signingIn": "Signing in...",
+            "resendVerification": "Resend Verification Email",
             "placeholders": {
                 "email": "name@example.com",
                 "password": "Enter password"
             },
             "errors": {
-                "loginFeatureInDevelopment": "Login feature is under development"
+                "loginFailed": "Login failed",
+                "emailNotVerified": "Email not verified"
+            },
+            "validation": {
+                "emailInvalid": "Invalid email address",
+                "passwordRequired": "Password is required"
             },
             "seo": {
                 "title": "Sign In",
@@ -88,9 +99,20 @@
                 "name": "Your full name",
                 "confirmPassword": "Confirm your password"
             },
+            "validation": {
+                "nameRequired": "Name is required",
+                "emailInvalid": "Invalid email address",
+                "passwordMinLength": "Password must be at least 6 characters",
+                "passwordMismatch": "Passwords do not match",
+                "termsRequired": "You must agree to the terms of service"
+            },
             "errors": {
-                "registerFeatureInDevelopment": "Registration feature is under development",
-                "termsRequired": "Please agree to the terms of service"
+                "registerFailed": "Registration failed",
+                "passwordMismatch": "Passwords do not match"
+            },
+            "success": {
+                "accountCreated": "Account created successfully! Please sign in.",
+                "verificationRequired": "Account created! Please check your email to verify your account."
             },
             "seo": {
                 "title": "Create Account",
@@ -109,8 +131,12 @@
             "placeholders": {
                 "email": "Enter your email address"
             },
+            "validation": {
+                "emailRequired": "Email is required",
+                "emailInvalid": "Please enter a valid email address"
+            },
             "errors": {
-                "forgotPasswordFeatureInDevelopment": "Forgot password feature is under development"
+                "sendFailed": "Failed to send reset email"
             },
             "seo": {
                 "title": "Forgot Password",
@@ -132,10 +158,13 @@
                 "newPassword": "Enter new password",
                 "confirmNewPassword": "Confirm new password"
             },
-            "errors": {
-                "resetPasswordFeatureInDevelopment": "Reset password feature is under development",
-                "invalidToken": "Invalid Link",
+            "validation": {
+                "passwordMinLength": "Password must be at least 6 characters",
                 "passwordMismatch": "Passwords do not match"
+            },
+            "errors": {
+                "resetPasswordFailed": "Password reset failed",
+                "invalidToken": "Invalid Link"
             },
             "seo": {
                 "title": "Reset Password",
@@ -146,13 +175,14 @@
         "verifyEmail": {
             "title": "Verify Email",
             "subtitle": "We're verifying your email address",
-            "verifying": "Verifying...",
-            "success": "Email verified successfully!",
-            "failed": "Email verification failed",
-            "expired": "Verification link has expired",
             "backToLogin": "Back to Login",
-            "resendVerification": "Resend Verification",
             "waitingMessage": "If the page doesn't redirect automatically, please",
+            "errors": {
+                "verifyEmailFailed": "Email verification failed",
+                "tokenExpired": "Verification link has expired",
+                "invalidToken": "Invalid verification link",
+                "emailAlreadyVerified": "Email has already been verified"
+            },
             "seo": {
                 "title": "Verify Email",
                 "description": "Verify your email address to activate your account and access all features",
@@ -193,6 +223,35 @@
                 "description": "Your email verification link has expired. Request a new link to verify your account",
                 "keywords": "verification expired, expired link, email verification, resend verification"
             }
+        },
+        "resendVerification": {
+            "title": "Resend Verification Email",
+            "subtitle": "Enter your email to receive a new verification link",
+            "form": {
+                "emailPlaceholder": "Enter your email address",
+                "sendButton": "Send Verification Email",
+                "sendingButton": "Sending..."
+            },
+            "validation": {
+                "emailRequired": "Email is required",
+                "emailInvalid": "Invalid email address"
+            },
+            "success": {
+                "title": "Email sent!",
+                "message": "We've sent a new verification link to your email. Please check your inbox and follow the instructions."
+            },
+            "backToLogin": "Back to Login",
+            "errors": {
+                "sendFailed": "Failed to send verification email",
+                "emailNotFound": "Email not found in our system",
+                "emailAlreadyVerified": "Email is already verified",
+                "tooManyRequests": "Too many requests. Please try again later"
+            },
+            "seo": {
+                "title": "Resend Verification Email",
+                "description": "Request a new verification email to activate your account",
+                "keywords": "resend verification, email verification, account activation"
+            }
         }
     },
     "home": {
@@ -222,5 +281,120 @@
     },
     "footer": {
         "copyright": "All rights reserved"
+    },
+    "account": {
+        "title": "Account Info",
+        "edit": "Edit",
+        "save": "Save",
+        "saving": "Saving...",
+        "updateSuccess": "Update success",
+        "updateFailed": "Update failed",
+        "emailCannotChange": "Email cannot be changed",
+        "validation": {
+            "nameRequired": "Name is required",
+            "nameMaxLength": "Name cannot exceed 100 characters",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Email is invalid"
+        },
+        "placeholders": {
+            "name": "Enter your name",
+            "email": "Enter your email"
+        },
+        "seo": {
+            "title": "Account Info",
+            "description": "Manage your account information and preferences",
+            "keywords": "account, info, preferences, theme, language"
+        }
+    },
+    "changePassword": {
+        "title": "Change Password",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "change": "Change Password",
+        "changing": "Changing...",
+        "success": "Change password success",
+        "failed": "Change password failed",
+        "passwordRequirements": "Password must be at least 6 characters, including uppercase, lowercase and numbers",
+        "validation": {
+            "currentPasswordRequired": "Current password is required",
+            "newPasswordMinLength": "New password must be at least 6 characters",
+            "newPasswordPattern": "Password must include uppercase, lowercase and numbers",
+            "confirmPasswordRequired": "Confirm password is required",
+            "passwordsNotMatch": "Passwords do not match"
+        },
+        "placeholders": {
+            "currentPassword": "Enter current password",
+            "newPassword": "Enter new password",
+            "confirmPassword": "Enter new password again"
+        },
+        "seo": {
+            "title": "Change Password",
+            "description": "Change your password to secure your account",
+            "keywords": "change password, secure account, password change"
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "languageUpdated": "Language updated",
+        "themeUpdated": "Theme updated",
+        "updateFailed": "Update failed",
+        "deleteFailed": "Delete account failed",
+        "deleteAccountNotImplemented": "Delete account feature is not implemented",
+        "uploadAvatarFailed": "Avatar upload failed",
+        "deleteAvatarFailed": "Avatar delete failed",
+        "getFailed": "Get information failed",
+        "language": {
+            "title": "Language",
+            "choose": "Choose language",
+            "description": "Change the display language of the application"
+        },
+        "theme": {
+            "title": "Theme",
+            "choose": "Choose theme",
+            "description": "Customize the light, dark or system theme",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        },
+        "avatar": {
+            "title": "Avatar",
+            "current": "Current avatar",
+            "noAvatar": "No avatar",
+            "supportedFormats": "Supported: JPG, PNG, GIF (max 5MB)",
+            "dropOrClick": "Drag & drop or click to select image",
+            "maxSize": "Maximum size: 5MB",
+            "selectFile": "Select File",
+            "uploading": "Uploading...",
+            "delete": "Delete Avatar",
+            "uploadSuccess": "Avatar uploaded successfully",
+            "uploadFailed": "Avatar upload failed",
+            "deleteSuccess": "Avatar deleted successfully",
+            "deleteFailed": "Avatar delete failed",
+            "deleting": "Deleting...",
+            "invalidFileType": "Please select an image file (JPG, PNG, GIF)",
+            "fileTooLarge": "File size too large (max 5MB)",
+            "confirmDeleteTitle": "Delete Avatar?",
+            "confirmDeleteDescription": "Are you sure you want to delete your current avatar?"
+        },
+        "dangerZone": {
+            "title": "Danger Zone",
+            "deleteAccountTitle": "Delete account",
+            "deleteAccountDescription": "Delete your account and all data permanently",
+            "deleteAccount": "Delete account",
+            "confirmTitle": "Confirm delete account?",
+            "confirmDescription": "This action cannot be undone. Your account and all data will be deleted permanently.",
+            "confirmDelete": "Delete account",
+            "enterPassword": "Enter your password",
+            "passwordPlaceholder": "Enter password to confirm",
+            "passwordRequired": "Password is required",
+            "deleting": "Deleting...",
+            "deleteSuccess": "Account deleted successfully"
+        },
+        "seo": {
+            "title": "Settings",
+            "description": "Manage your account settings and preferences",
+            "keywords": "settings, account, preferences, theme, language"
+        }
     }
 }

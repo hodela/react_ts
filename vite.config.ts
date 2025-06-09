@@ -5,6 +5,22 @@ import { fileURLToPath, URL } from "node:url";
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],
+    server: {
+        proxy: {
+            // Proxy cho API calls
+            "/api": {
+                target: "http://localhost:3000",
+                changeOrigin: true,
+                secure: false,
+            },
+            // Proxy cho upload image
+            "/uploads": {
+                target: "http://localhost:3000",
+                changeOrigin: true,
+                secure: false,
+            },
+        },
+    },
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url)),

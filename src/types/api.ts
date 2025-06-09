@@ -32,6 +32,7 @@ export interface IUser {
     language?: string;
     role?: string;
     theme?: string;
+    isVerified?: boolean;
     createdAt: string;
     updatedAt: string;
 }
@@ -86,6 +87,10 @@ export interface RegisterResponse {
     user: IUser;
     message?: string;
     requiresVerification?: boolean;
+}
+
+export interface ResendVerificationRequest {
+    email: string;
 }
 
 // Password reset types

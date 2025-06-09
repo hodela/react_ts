@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, CheckCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { Mail, CheckCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,41 +15,41 @@ import { SEO } from "@/components/shared/SEO";
 import { authService } from "@/api/services/auth.service";
 import type { ApiError } from "@/types/api";
 
-const ForgotPasswordPage = () => {
+const ResendVerificationPage = () => {
     const { t } = useTranslation();
-    const seoData = generateAuthPageSEO("forgotPassword", t);
+    const seoData = generateAuthPageSEO("resendVerification", t);
 
     // Zod schema for form validation with i18n
-    const forgotPasswordSchema = z.object({
+    const resendVerificationSchema = z.object({
         email: z
             .string()
-            .min(1, t("auth.forgotPassword.validation.emailRequired"))
-            .email(t("auth.forgotPassword.validation.emailInvalid")),
+            .min(1, t("auth.resendVerification.validation.emailRequired"))
+            .email(t("auth.resendVerification.validation.emailInvalid")),
     });
 
-    type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
+    type ResendVerificationFormData = z.infer<typeof resendVerificationSchema>;
 
+    const [isSuccess, setIsSuccess] = useState(false);
     const [error, setError] = useState("");
-    const [success, setSuccess] = useState(false);
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
         setError: setFieldError,
-    } = useForm<ForgotPasswordFormData>({
-        resolver: zodResolver(forgotPasswordSchema),
+    } = useForm<ResendVerificationFormData>({
+        resolver: zodResolver(resendVerificationSchema),
         defaultValues: {
             email: "",
         },
     });
 
-    const onSubmit = async (data: ForgotPasswordFormData) => {
+    const onSubmit = async (data: ResendVerificationFormData) => {
         setError("");
 
         try {
-            await authService.forgotPassword(data.email, t);
-            setSuccess(true);
+            await authService.resendVerification(data.email, t);
+            setIsSuccess(true);
         } catch (error) {
             const apiError = error as ApiError;
 
@@ -57,18 +57,18 @@ const ForgotPasswordPage = () => {
             if (apiError.details) {
                 Object.entries(apiError.details).forEach(([field, messages]) => {
                     if (Array.isArray(messages) && messages.length > 0) {
-                        setFieldError(field as keyof ForgotPasswordFormData, {
+                        setFieldError(field as keyof ResendVerificationFormData, {
                             message: messages[0],
                         });
                     }
                 });
             } else {
-                setError(apiError.message || t("auth.forgotPassword.errors.sendFailed"));
+                setError(apiError.message || t("auth.resendVerification.errors.sendFailed"));
             }
         }
     };
 
-    if (success) {
+    if (isSuccess) {
         return (
             <>
                 <SEO
@@ -85,13 +85,15 @@ const ForgotPasswordPage = () => {
                     </div>
 
                     <div>
-                        <h2 className="text-2xl font-bold text-green-600">{t("auth.forgotPassword.success")}</h2>
-                        <p className="text-muted-foreground mt-2">{t("auth.forgotPassword.checkEmail")}</p>
+                        <h2 className="text-2xl font-bold text-green-600">
+                            {t("auth.resendVerification.success.title")}
+                        </h2>
+                        <p className="text-muted-foreground mt-2">{t("auth.resendVerification.success.message")}</p>
                     </div>
 
                     <div className="space-y-3">
                         <Button asChild className="w-full">
-                            <Link to="/auth/login">{t("auth.forgotPassword.backToLogin")}</Link>
+                            <Link to="/auth/login">{t("auth.resendVerification.backToLogin")}</Link>
                         </Button>
                         <Button variant="outline" asChild className="w-full">
                             <Link to="/">{t("navigation.home")}</Link>
@@ -112,8 +114,8 @@ const ForgotPasswordPage = () => {
             />
             <div className="space-y-6">
                 <div className="text-center">
-                    <h2 className="text-2xl font-bold">{t("auth.forgotPassword.title")}</h2>
-                    <p className="text-muted-foreground mt-2">{t("auth.forgotPassword.subtitle")}</p>
+                    <h2 className="text-2xl font-bold">{t("auth.resendVerification.title")}</h2>
+                    <p className="text-muted-foreground mt-2">{t("auth.resendVerification.subtitle")}</p>
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -131,7 +133,7 @@ const ForgotPasswordPage = () => {
                                 {...register("email")}
                                 id="email"
                                 type="email"
-                                placeholder={t("auth.forgotPassword.placeholders.email")}
+                                placeholder={t("auth.resendVerification.form.emailPlaceholder")}
                                 className="pl-10"
                                 disabled={isSubmitting}
                             />
@@ -140,14 +142,16 @@ const ForgotPasswordPage = () => {
                     </div>
 
                     <Button type="submit" className="w-full" disabled={isSubmitting}>
-                        {isSubmitting ? t("auth.forgotPassword.sending") : t("auth.forgotPassword.sendReset")}
+                        {isSubmitting
+                            ? t("auth.resendVerification.form.sendingButton")
+                            : t("auth.resendVerification.form.sendButton")}
                     </Button>
                 </form>
 
                 <div className="text-center space-y-2">
                     <p className="text-sm text-muted-foreground">
                         <Link to="/auth/login" className="text-primary hover:underline">
-                            {t("auth.forgotPassword.backToLogin")}
+                            {t("auth.resendVerification.backToLogin")}
                         </Link>
                     </p>
                 </div>
@@ -156,4 +160,4 @@ const ForgotPasswordPage = () => {
     );
 };
 
-export default ForgotPasswordPage;
+export default ResendVerificationPage;

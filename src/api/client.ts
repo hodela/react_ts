@@ -3,9 +3,9 @@ import { tokenManager } from "@/lib/tokenManager";
 import type { ApiError, RefreshTokenResponse } from "@/types/api";
 
 /**
- * API Base URL - Lấy từ environment variables hoặc fallback to localhost
+ * API Base URL - được cấu hình trong vite.config.ts
  */
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
+const API_BASE_URL = "/api";
 
 /**
  * Axios instance chính cho tất cả API calls
@@ -206,11 +206,7 @@ const formatApiError = (error: AxiosError): ApiError => {
     return {
         message: apiError?.message || error.message || "Có lỗi xảy ra khi gọi API",
         code: apiError?.code || `HTTP_${error.response?.status || "UNKNOWN"}`,
-        details: apiError?.details || {
-            status: error.response?.status,
-            url: error.config?.url,
-            method: error.config?.method?.toUpperCase(),
-        },
+        details: apiError?.details,
     };
 };
 
@@ -282,8 +278,8 @@ const handleLogout = (): void => {
 
     // Redirect về trang login với current path để redirect back sau login
     const currentPath = window.location.pathname;
-    if (currentPath !== "/login") {
-        const redirectUrl = `/login?redirect=${encodeURIComponent(currentPath)}`;
+    if (currentPath !== "/auth/login") {
+        const redirectUrl = `/auth/login?redirect=${encodeURIComponent(currentPath)}`;
 
         // Sử dụng setTimeout để tránh race condition với state updates
         setTimeout(() => {

@@ -10,16 +10,16 @@ const LoadingSpinner = () => (
 
 export const AuthLayout = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 {/* Logo */}
                 <Link to="/" className="flex justify-center">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">MyApp</h1>
+                    <img src="/logo.svg" alt="MyApp" className="w-auto h-10" />
                 </Link>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white dark:bg-gray-800 py-8 px-4 shadow-xl sm:rounded-xl sm:px-10 border border-gray-200 dark:border-gray-700">
+            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-6">
+                <div className="bg-card py-8 px-8 shadow-xl rounded-xl sm:px-10 border border-border">
                     <Suspense fallback={<LoadingSpinner />}>
                         <Outlet />
                     </Suspense>

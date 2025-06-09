@@ -4,13 +4,15 @@
  * @returns {Object} Object chứa các state và hàm xử lý đăng nhập và đăng xuất
  */
 import { authService } from "@/api/services/auth.service";
-import type { LoginRequest } from "@/types/api";
+import { userService } from "@/api/services/user.service";
+import type { ApiError, LoginRequest } from "@/types/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const useAuth = () => {
     const queryClient = useQueryClient();
-
+    const { t } = useTranslation();
     // Get current user query - chỉ fetch khi user authenticated
     const {
         data: user,
@@ -18,7 +20,7 @@ export const useAuth = () => {
         error: userError,
     } = useQuery({
         queryKey: ["auth", "user"],
-        queryFn: authService.getCurrentUser,
+        queryFn: () => userService.getCurrentUser(t),
         enabled: authService.isAuthenticated(), // Chỉ fetch khi có token hợp lệ
         retry: (failureCount, error: any) => {
             // Không retry nếu là lỗi 401 (token issues)
@@ -31,9 +33,11 @@ export const useAuth = () => {
         gcTime: 10 * 60 * 1000, // 10 minutes (renamed from cacheTime)
     });
 
+    const [loginError, setLoginError] = useState<ApiError | null>(null);
+
     // Login mutation
     const loginMutation = useMutation({
-        mutationFn: (credentials: LoginRequest) => authService.login(credentials),
+        mutationFn: (credentials: LoginRequest) => authService.login(credentials, t),
         onSuccess: (data) => {
             // Tokens đã được lưu trong authService.login()
 
@@ -45,6 +49,7 @@ export const useAuth = () => {
         },
         onError: (error) => {
             console.error("Login failed:", error);
+            setLoginError(error);
         },
     });
 
@@ -106,7 +111,7 @@ export const useAuth = () => {
 
         // Error states
         userError,
-        loginError: loginMutation.error,
+        loginError,
         logoutError: logoutMutation.error,
 
         // Actions

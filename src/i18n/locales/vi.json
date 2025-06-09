@@ -19,12 +19,17 @@
         "password": "Mật khẩu",
         "name": "Tên"
     },
+    "theme": {
+        "light": "Sáng",
+        "dark": "Tối",
+        "system": "Hệ thống"
+    },
     "welcome": {
         "title": "Chào mừng đến với React + Vite + TypeScript",
         "subtitle": "Được xây dựng với shadcn/ui & Tailwind CSS",
         "features": {
             "react": {
-                "title": "React 18",
+                "title": "React 19",
                 "description": "React hiện đại với hooks và tính năng đồng thời"
             },
             "typescript": {
@@ -61,12 +66,18 @@
             "signUp": "Đăng ký",
             "signInButton": "Đăng nhập",
             "signingIn": "Đang đăng nhập...",
+            "resendVerification": "Gửi lại email xác thực",
             "placeholders": {
                 "email": "name@example.com",
                 "password": "Nhập mật khẩu"
             },
             "errors": {
-                "loginFeatureInDevelopment": "Tính năng đăng nhập đang được phát triển"
+                "loginFailed": "Đăng nhập thất bại",
+                "emailNotVerified": "Email chưa được xác thực"
+            },
+            "validation": {
+                "emailInvalid": "Email không hợp lệ",
+                "passwordRequired": "Mật khẩu là bắt buộc"
             },
             "seo": {
                 "title": "Đăng nhập",
@@ -88,9 +99,20 @@
                 "name": "Tên đầy đủ của bạn",
                 "confirmPassword": "Xác nhận mật khẩu của bạn"
             },
+            "validation": {
+                "nameRequired": "Tên là bắt buộc",
+                "emailInvalid": "Email không hợp lệ",
+                "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+                "passwordMismatch": "Mật khẩu xác nhận không khớp",
+                "termsRequired": "Bạn phải đồng ý với điều khoản sử dụng"
+            },
             "errors": {
-                "registerFeatureInDevelopment": "Tính năng đăng ký đang được phát triển",
-                "termsRequired": "Vui lòng đồng ý với điều khoản sử dụng"
+                "registerFailed": "Đăng ký thất bại",
+                "passwordMismatch": "Mật khẩu xác nhận không khớp"
+            },
+            "success": {
+                "accountCreated": "Tạo tài khoản thành công! Vui lòng đăng nhập.",
+                "verificationRequired": "Tài khoản đã được tạo! Vui lòng kiểm tra email để xác thực tài khoản."
             },
             "seo": {
                 "title": "Tạo tài khoản",
@@ -109,8 +131,12 @@
             "placeholders": {
                 "email": "Nhập địa chỉ email của bạn"
             },
+            "validation": {
+                "emailRequired": "Email là bắt buộc",
+                "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ"
+            },
             "errors": {
-                "forgotPasswordFeatureInDevelopment": "Tính năng quên mật khẩu đang được phát triển"
+                "sendFailed": "Gửi email đặt lại thất bại"
             },
             "seo": {
                 "title": "Quên mật khẩu",
@@ -132,10 +158,13 @@
                 "newPassword": "Nhập mật khẩu mới",
                 "confirmNewPassword": "Xác nhận mật khẩu mới"
             },
-            "errors": {
-                "resetPasswordFeatureInDevelopment": "Tính năng đặt lại mật khẩu đang được phát triển",
-                "invalidToken": "Liên kết không hợp lệ",
+            "validation": {
+                "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
                 "passwordMismatch": "Mật khẩu không khớp"
+            },
+            "errors": {
+                "resetPasswordFailed": "Đặt lại mật khẩu thất bại",
+                "invalidToken": "Liên kết không hợp lệ"
             },
             "seo": {
                 "title": "Đặt lại mật khẩu",
@@ -146,13 +175,14 @@
         "verifyEmail": {
             "title": "Xác thực Email",
             "subtitle": "Chúng tôi đang xác thực địa chỉ email của bạn",
-            "verifying": "Đang xác thực...",
-            "success": "Email đã được xác thực thành công!",
-            "failed": "Xác thực email thất bại",
-            "expired": "Liên kết xác thực đã hết hạn",
             "backToLogin": "Quay lại đăng nhập",
-            "resendVerification": "Gửi lại xác thực",
             "waitingMessage": "Nếu không tự động chuyển trang, vui lòng",
+            "errors": {
+                "verifyEmailFailed": "Xác thực email thất bại",
+                "tokenExpired": "Liên kết xác thực đã hết hạn",
+                "invalidToken": "Liên kết xác thực không hợp lệ",
+                "emailAlreadyVerified": "Email đã được xác thực trước đó"
+            },
             "seo": {
                 "title": "Xác thực Email",
                 "description": "Xác thực địa chỉ email của bạn để kích hoạt tài khoản và truy cập tất cả tính năng",
@@ -193,6 +223,35 @@
                 "description": "Liên kết xác thực email của bạn đã hết hạn. Yêu cầu liên kết mới để xác thực tài khoản",
                 "keywords": "xác thực hết hạn, liên kết hết hạn, xác thực email, gửi lại xác thực"
             }
+        },
+        "resendVerification": {
+            "title": "Gửi lại email xác thực",
+            "subtitle": "Nhập email để nhận liên kết xác thực mới",
+            "form": {
+                "emailPlaceholder": "Nhập địa chỉ email của bạn",
+                "sendButton": "Gửi email xác thực",
+                "sendingButton": "Đang gửi..."
+            },
+            "validation": {
+                "emailRequired": "Email là bắt buộc",
+                "emailInvalid": "Địa chỉ email không hợp lệ"
+            },
+            "success": {
+                "title": "Email đã được gửi!",
+                "message": "Chúng tôi đã gửi liên kết xác thực mới đến email của bạn. Vui lòng kiểm tra hộp thư và làm theo hướng dẫn."
+            },
+            "backToLogin": "Quay lại đăng nhập",
+            "errors": {
+                "sendFailed": "Không thể gửi email xác thực",
+                "emailNotFound": "Email không tồn tại trong hệ thống",
+                "emailAlreadyVerified": "Email đã được xác thực",
+                "tooManyRequests": "Quá nhiều yêu cầu. Vui lòng thử lại sau"
+            },
+            "seo": {
+                "title": "Gửi lại email xác thực",
+                "description": "Yêu cầu gửi lại email xác thực để kích hoạt tài khoản của bạn",
+                "keywords": "gửi lại xác thực, email xác thực, kích hoạt tài khoản"
+            }
         }
     },
     "home": {
@@ -222,5 +281,120 @@
     },
     "footer": {
         "copyright": "Tất cả quyền được bảo lưu"
+    },
+    "account": {
+        "title": "Thông tin tài khoản",
+        "edit": "Chỉnh sửa",
+        "save": "Lưu",
+        "saving": "Đang lưu...",
+        "updateSuccess": "Cập nhật thông tin thành công",
+        "updateFailed": "Cập nhật thông tin thất bại",
+        "emailCannotChange": "Email không thể thay đổi",
+        "validation": {
+            "nameRequired": "Tên là bắt buộc",
+            "nameMaxLength": "Tên không được vượt quá 100 ký tự",
+            "emailRequired": "Email là bắt buộc",
+            "emailInvalid": "Email không hợp lệ"
+        },
+        "placeholders": {
+            "name": "Nhập tên của bạn",
+            "email": "Địa chỉ email"
+        },
+        "seo": {
+            "title": "Thông tin tài khoản",
+            "description": "Quản lý thông tin tài khoản và cài đặt của bạn",
+            "keywords": "thông tin tài khoản, cài đặt, ngôn ngữ, giao diện, thay đổi ngôn ngữ"
+        }
+    },
+    "changePassword": {
+        "title": "Đổi mật khẩu",
+        "currentPassword": "Mật khẩu hiện tại",
+        "newPassword": "Mật khẩu mới",
+        "confirmPassword": "Xác nhận mật khẩu",
+        "change": "Đổi mật khẩu",
+        "changing": "Đang đổi...",
+        "success": "Đổi mật khẩu thành công",
+        "failed": "Đổi mật khẩu thất bại",
+        "passwordRequirements": "Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ hoa, chữ thường và số",
+        "validation": {
+            "currentPasswordRequired": "Mật khẩu hiện tại là bắt buộc",
+            "newPasswordMinLength": "Mật khẩu mới phải có ít nhất 6 ký tự",
+            "newPasswordPattern": "Mật khẩu phải bao gồm chữ hoa, chữ thường và số",
+            "confirmPasswordRequired": "Xác nhận mật khẩu là bắt buộc",
+            "passwordsNotMatch": "Mật khẩu không khớp"
+        },
+        "placeholders": {
+            "currentPassword": "Nhập mật khẩu hiện tại",
+            "newPassword": "Nhập mật khẩu mới",
+            "confirmPassword": "Nhập lại mật khẩu mới"
+        },
+        "seo": {
+            "title": "Đổi mật khẩu",
+            "description": "Đổi mật khẩu để bảo mật tài khoản của bạn",
+            "keywords": "đổi mật khẩu, bảo mật tài khoản, mật khẩu"
+        }
+    },
+    "settings": {
+        "title": "Cài đặt",
+        "languageUpdated": "Ngôn ngữ đã được cập nhật",
+        "themeUpdated": "Giao diện đã được cập nhật",
+        "updateFailed": "Cập nhật thất bại",
+        "deleteFailed": "Xóa tài khoản thất bại",
+        "deleteAccountNotImplemented": "Tính năng xóa tài khoản chưa được triển khai",
+        "uploadAvatarFailed": "Tải lên ảnh đại diện thất bại",
+        "deleteAvatarFailed": "Xóa ảnh đại diện thất bại",
+        "getFailed": "Lấy thông tin thất bại",
+        "language": {
+            "title": "Ngôn ngữ",
+            "choose": "Chọn ngôn ngữ",
+            "description": "Thay đổi ngôn ngữ hiển thị của ứng dụng"
+        },
+        "theme": {
+            "title": "Giao diện",
+            "choose": "Chọn giao diện",
+            "description": "Tùy chỉnh giao diện sáng, tối hoặc theo hệ thống",
+            "light": "Sáng",
+            "dark": "Tối",
+            "system": "Theo hệ thống"
+        },
+        "avatar": {
+            "title": "Ảnh đại diện",
+            "current": "Ảnh đại diện hiện tại",
+            "noAvatar": "Chưa có ảnh đại diện",
+            "supportedFormats": "Hỗ trợ: JPG, PNG, GIF (tối đa 5MB)",
+            "dropOrClick": "Kéo thả hoặc click để chọn ảnh",
+            "maxSize": "Kích thước tối đa: 5MB",
+            "selectFile": "Chọn tập tin",
+            "uploading": "Đang tải lên...",
+            "delete": "Xóa ảnh đại diện",
+            "uploadSuccess": "Tải lên ảnh đại diện thành công",
+            "uploadFailed": "Tải lên ảnh đại diện thất bại",
+            "deleteSuccess": "Xóa ảnh đại diện thành công",
+            "deleteFailed": "Xóa ảnh đại diện thất bại",
+            "deleting": "Đang xóa...",
+            "invalidFileType": "Vui lòng chọn tập tin ảnh (JPG, PNG, GIF)",
+            "fileTooLarge": "Kích thước tập tin quá lớn (tối đa 5MB)",
+            "confirmDeleteTitle": "Xóa ảnh đại diện?",
+            "confirmDeleteDescription": "Bạn có chắc chắn muốn xóa ảnh đại diện hiện tại không?"
+        },
+        "dangerZone": {
+            "title": "Vùng nguy hiểm",
+            "deleteAccountTitle": "Xóa tài khoản",
+            "deleteAccountDescription": "Xóa vĩnh viễn tài khoản và toàn bộ dữ liệu của bạn",
+            "deleteAccount": "Xóa tài khoản",
+            "confirmTitle": "Xác nhận xóa tài khoản?",
+            "confirmDescription": "Hành động này không thể hoàn tác. Tài khoản và toàn bộ dữ liệu sẽ bị xóa vĩnh viễn.",
+            "confirmDelete": "Xóa tài khoản",
+            "enterPassword": "Nhập mật khẩu của bạn",
+            "passwordPlaceholder": "Nhập mật khẩu để xác nhận",
+            "passwordRequired": "Mật khẩu là bắt buộc",
+            "deleting": "Đang xóa...",
+            "deleteSuccess": "Tài khoản đã được xóa thành công"
+        },
+        "seo": {
+            "title": "Cài đặt",
+            "description": "Quản lý cài đặt và thông tin tài khoản của bạn",
+            "keywords": "cài đặt, tài khoản, ngôn ngữ, giao diện, thay đổi ngôn ngữ"
+        }
     }
 }

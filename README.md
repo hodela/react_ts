@@ -15,6 +15,11 @@
 - React Router
 - TanStack Query
 - Axios
+- React Hook Form
+- Zod
+- React Helmet Async
+- Shadcn UI
+- i18next
 
 ## Các backend API phù hợp với stack này
 

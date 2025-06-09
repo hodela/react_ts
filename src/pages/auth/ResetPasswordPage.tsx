@@ -1,14 +1,19 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckCircle, Eye, EyeOff, Lock, XCircle } from "lucide-react";
 import { useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { Eye, EyeOff, Lock, CheckCircle, XCircle } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Link, useSearchParams } from "react-router-dom";
+import { z } from "zod";
 
+import { authService } from "@/api/services/auth.service";
+import { SEO } from "@/components/shared/SEO";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { generateAuthPageSEO } from "@/lib/seo-utils";
-import { SEO } from "@/components/shared/SEO";
+import type { ApiError } from "@/types/api";
 
 const ResetPasswordPage = () => {
     const { t } = useTranslation();
@@ -17,34 +22,73 @@ const ResetPasswordPage = () => {
     const [searchParams] = useSearchParams();
     const token = searchParams.get("token");
 
+    // Zod schema for form validation with i18n
+    const resetPasswordSchema = z
+        .object({
+            password: z.string().min(6, t("auth.resetPassword.validation.passwordMinLength")),
+            confirmPassword: z.string(),
+        })
+        .refine((data) => data.password === data.confirmPassword, {
+            message: t("auth.resetPassword.validation.passwordMismatch"),
+            path: ["confirmPassword"],
+        });
+
+    type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
+
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsLoading(true);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        setError: setFieldError,
+    } = useForm<ResetPasswordFormData>({
+        resolver: zodResolver(resetPasswordSchema),
+        defaultValues: {
+            password: "",
+            confirmPassword: "",
+        },
+    });
+
+    const onSubmit = async (data: ResetPasswordFormData) => {
+        if (!token) return;
+
         setError("");
 
-        const formData = new FormData(e.currentTarget);
-        const password = formData.get("password") as string;
-        const confirmPassword = formData.get("confirmPassword") as string;
+        try {
+            await authService.resetPassword(
+                {
+                    token,
+                    password: data.password,
+                    confirmPassword: data.confirmPassword,
+                },
+                t
+            );
 
-        if (password !== confirmPassword) {
-            setError(t("auth.resetPassword.errors.passwordMismatch"));
-            setIsLoading(false);
-            return;
-        }
-
-        // TODO: Implement reset password logic
-        setTimeout(() => {
-            setIsLoading(false);
-            setError(t("auth.resetPassword.errors.resetPasswordFeatureInDevelopment"));
-            // For demo, we'll show success instead
             setSuccess(true);
-        }, 1000);
+        } catch (error) {
+            const apiError = error as ApiError;
+
+            // Xử lý validation errors từ API
+            if (apiError.details) {
+                Object.entries(apiError.details).forEach(([field, messages]) => {
+                    if (Array.isArray(messages) && messages.length > 0) {
+                        if (field === "token") {
+                            setError(messages[0]);
+                        } else {
+                            setFieldError(field as keyof ResetPasswordFormData, {
+                                message: messages[0],
+                            });
+                        }
+                    }
+                });
+            } else {
+                setError(apiError.message || t("auth.resetPassword.errors.resetPasswordFailed"));
+            }
+        }
     };
 
     if (!token) {
@@ -121,7 +165,7 @@ const ResetPasswordPage = () => {
                     <p className="text-muted-foreground mt-2">{t("auth.resetPassword.subtitle")}</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     {error && (
                         <Alert variant="destructive">
                             <AlertDescription>{error}</AlertDescription>
@@ -131,24 +175,23 @@ const ResetPasswordPage = () => {
                     <div className="space-y-2">
                         <Label htmlFor="password">{t("auth.resetPassword.newPassword")}</Label>
                         <div className="relative">
-                            <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                            <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                             <Input
+                                {...register("password")}
                                 id="password"
-                                name="password"
                                 type={showPassword ? "text" : "password"}
                                 placeholder={t("auth.resetPassword.placeholders.newPassword")}
                                 className="pl-10 pr-10"
-                                required
-                                disabled={isLoading}
-                                minLength={6}
+                                disabled={isSubmitting}
                             />
                             <Button
                                 type="button"
                                 variant="ghost"
                                 size="sm"
+                                tabIndex={-1}
                                 className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                                 onClick={() => setShowPassword(!showPassword)}
-                                disabled={isLoading}
+                                disabled={isSubmitting}
                             >
                                 {showPassword ? (
                                     <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -157,29 +200,29 @@ const ResetPasswordPage = () => {
                                 )}
                             </Button>
                         </div>
+                        {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="confirmPassword">{t("auth.resetPassword.confirmNewPassword")}</Label>
                         <div className="relative">
-                            <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                            <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                             <Input
+                                {...register("confirmPassword")}
                                 id="confirmPassword"
-                                name="confirmPassword"
                                 type={showConfirmPassword ? "text" : "password"}
                                 placeholder={t("auth.resetPassword.placeholders.confirmNewPassword")}
                                 className="pl-10 pr-10"
-                                required
-                                disabled={isLoading}
-                                minLength={6}
+                                disabled={isSubmitting}
                             />
                             <Button
                                 type="button"
                                 variant="ghost"
                                 size="sm"
+                                tabIndex={-1}
                                 className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                disabled={isLoading}
+                                disabled={isSubmitting}
                             >
                                 {showConfirmPassword ? (
                                     <EyeOff className="h-4 w-4 text-muted-foreground" />
@@ -188,10 +231,13 @@ const ResetPasswordPage = () => {
                                 )}
                             </Button>
                         </div>
+                        {errors.confirmPassword && (
+                            <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>
+                        )}
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={isLoading}>
-                        {isLoading ? t("auth.resetPassword.resetting") : t("auth.resetPassword.resetButton")}
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? t("auth.resetPassword.resetting") : t("auth.resetPassword.resetButton")}
                     </Button>
                 </form>
 

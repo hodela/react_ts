@@ -1,9 +1,11 @@
 import { Mail } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { generateAuthPageSEO } from "@/lib/seo-utils";
 import { SEO } from "@/components/shared/SEO";
+import { authService } from "@/api/services/auth.service";
+import type { ApiError } from "@/types/api";
 
 const VerifyEmailPage = () => {
     const { t } = useTranslation();
@@ -12,33 +14,45 @@ const VerifyEmailPage = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const token = searchParams.get("token");
+    const [isVerifying, setIsVerifying] = useState(true);
+    const [hasCheckedToken, setHasCheckedToken] = useState(false);
 
     useEffect(() => {
-        if (!token) {
-            navigate("/auth/verify-email-failed");
-            return;
-        }
+        // Đợi một tick để đảm bảo searchParams đã được parse đầy đủ
+        const timeoutId = setTimeout(() => {
+            if (!hasCheckedToken) {
+                setHasCheckedToken(true);
 
-        const verifyEmail = async () => {
-            try {
-                // TODO: Implement email verification logic
-                await new Promise((resolve) => setTimeout(resolve, 2000));
-
-                // Simulate verification result
-                const isValid = Math.random() > 0.3; // 70% success rate for demo
-
-                if (isValid) {
-                    navigate("/auth/verify-email-success");
-                } else {
-                    navigate("/auth/verify-email-expired");
+                if (!token) {
+                    navigate("/auth/verify-email-failed");
+                    return;
                 }
-            } catch (error) {
-                navigate("/auth/verify-email-failed");
-            }
-        };
 
-        verifyEmail();
-    }, [token, navigate]);
+                const verifyEmail = async () => {
+                    setIsVerifying(true);
+                    try {
+                        await authService.verifyEmail(token, t);
+                        navigate("/auth/verify-email-success");
+                    } catch (error) {
+                        const apiError = error as ApiError;
+
+                        // Xử lý các loại lỗi khác nhau
+                        if (apiError.code === "TOKEN_EXPIRED") {
+                            navigate("/auth/verify-email-expired");
+                        } else {
+                            navigate("/auth/verify-email-failed");
+                        }
+                    } finally {
+                        setIsVerifying(false);
+                    }
+                };
+
+                verifyEmail();
+            }
+        }, 0);
+
+        return () => clearTimeout(timeoutId);
+    }, [token, navigate, t, hasCheckedToken]);
 
     return (
         <>
@@ -60,11 +74,13 @@ const VerifyEmailPage = () => {
                     <p className="text-muted-foreground mt-2">{t("auth.verifyEmail.subtitle")}</p>
                 </div>
 
-                <div className="flex items-center justify-center space-x-1">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                    <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
-                </div>
+                {isVerifying && (
+                    <div className="flex items-center justify-center space-x-1">
+                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                        <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+                    </div>
+                )}
 
                 <p className="text-xs text-muted-foreground">
                     {t("auth.verifyEmail.waitingMessage")}{" "}
